@@ -11,3 +11,15 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key
 
 connect_db(app)
+
+def serialize_cupcake(cupcake):
+    """Return SQLAlchemy obj to dictionary"""
+    
+    return{
+        "id": cupcake.id,
+        "flavor": cupcake.flavor,
+        "size": cupcake.size,
+        "rating": cupcake.rating,
+        "image": cupcake.image
+    }
+    

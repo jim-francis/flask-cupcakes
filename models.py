@@ -21,3 +21,15 @@ class Cupcake(db.Model):
     
     def image_url(self):
         return self.photo_url or GENERIC_IMAGE
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "flavor": self.flavor,
+            "size": self.size,
+            "rating": self.rating,
+            "image": self.image
+    }
+    
+    def __repr__(self):
+        return f"<Cupcake {self.id} flavor={self.flavor} size={self.size} rating={self.rating} image={self.image}>"
