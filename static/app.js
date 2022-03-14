@@ -22,4 +22,32 @@ async function showCupcakes(){
     }
 }
 
+$("#add-cupcake-form").on("submit", async function(e){
+    e.preventDefault();
+    let flavor = $("#form-flavor").val();
+    let size = $("#form-size").val();
+    let rating = $("#form-rating").val();
+    let image = $("#form-image").val();
+
+    const postedCupcake = await axios.post(`${apiURL}/cupcakes`, {
+        flavor,
+        size,
+        rating,
+        image
+    })
+
+    let newCupcake = showCupcakes(postedCupcake.data.cupcake)
+    $("#cupcake-list").append(newCupcake)
+    $("#add-cupcake-form").trigger("reset");
+})
+
+$("#cupcake-list").on("click", ".delete-button", async function(e){
+    e.preventDefault()
+    let cupcake = $(e.target).closest("div");
+    let cupcakeID = cupcake.attr("data-id")
+
+    await axios.delete(`${apiURL}/cupcakes/${cupcakeID}`)
+    cupcake.remove();
+})
+
 showCupcakes()

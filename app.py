@@ -37,8 +37,8 @@ def create_cupcate():
         size=data["size"],
         image=data["image"] or None)
     
-    # if fresh_cupcake.image is None or "None":
-    #     fresh_cupcake.image = GENERIC_IMAGE
+    if fresh_cupcake.image is None or "None":
+        fresh_cupcake.image = GENERIC_IMAGE
     
     db.session.add(fresh_cupcake)
     db.session.commit()

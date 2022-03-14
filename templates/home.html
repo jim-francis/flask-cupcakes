@@ -8,9 +8,30 @@
     <title>Cupcakes</title>
 </head>
 <body>
-    <h1>Hi!</h1>
+    <h1>Look at these cupcakes!</h1>
     <ul id="cupcake-list"></ul>
 
+    <h2>Add a cupcake?</h2>
+    <form id="add-cupcake-form">
+        <div>
+            <label for="form-flavor">Flavor:</label>
+            <input type="text" id="form-flavor" name="flavor">
+        </div>
+        <div>
+            <label for="form-size">Size:</label>
+            <input type="text" id="form-size" name="size">
+        </div>
+        <div>
+            <label for="form-rating">Rating:</label>
+            <input type="number" max="10" id="form-rating" name="rating">
+        </div>
+        <div>
+            <label for="form-image">Image URL:</label>
+            <input type="text" id="form-image" name="image">
+        </div>
+            <button>Submit</button>
+        </div>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
