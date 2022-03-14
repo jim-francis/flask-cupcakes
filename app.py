@@ -1,7 +1,7 @@
 """Flask app for Cupcakes"""
 
 from flask import Flask, request, jsonify, render_template
-from models import db, connect_db, Cupcake
+from models import GENERIC_IMAGE, db, connect_db, Cupcake
 
 app = Flask(__name__)
 
@@ -10,6 +10,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "NGE4ev"
 
 connect_db(app)
+
+@app.route('/')
+def show_homepage():
+    return render_template("home.html")
 
 @app.route('/api/cupcakes')
 def list_cupcakes():
@@ -32,6 +36,10 @@ def create_cupcate():
         rating=data["rating"],
         size=data["size"],
         image=data["image"] or None)
+    
+    # if fresh_cupcake.image is None or "None":
+    #     fresh_cupcake.image = GENERIC_IMAGE
+    
     db.session.add(fresh_cupcake)
     db.session.commit()
     response_json = jsonify(cupcake=fresh_cupcake.serialize())
